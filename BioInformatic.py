@@ -163,6 +163,8 @@ def getORFS_and_metadata_fromsequence(sequence,minaminoacidlength,include_revers
         end_c=0
         start_l = []
         end_l = []
+        orf_length=0
+        ORF_length_l = []
         new_sequence = ""
         read_frame = ""
         for i in full_nucleotide_sequence:
@@ -191,9 +193,11 @@ def getORFS_and_metadata_fromsequence(sequence,minaminoacidlength,include_revers
                     end_l.append(end_c)
                     reading_l.append(reading)
                     reading_frames.append(read_frame)
+                    orf_length=start_c-end_c
+                    ORF_length_l.append(orf_length)
                     add=0
                     read_frame=""
-        return reading_frames,reading_l,start_l,end_l
+        return reading_frames,reading_l,start_l,end_l,ORF_length_l
     def search_proteins_by_index_circle(full_nucleotide_sequence,start):
         add=0
         reading_frames = []
@@ -204,6 +208,8 @@ def getORFS_and_metadata_fromsequence(sequence,minaminoacidlength,include_revers
         end_c=0
         start_l = []
         end_l = []
+        orf_length=0
+        ORF_length_l = []
         circle_nucleotidic_sequence = 2*full_nucleotide_sequence
         for i in range(start, len(circle_nucleotidic_sequence), 3):
             if add==0 and i>(len(circle_nucleotidic_sequence))/2:
@@ -220,9 +226,11 @@ def getORFS_and_metadata_fromsequence(sequence,minaminoacidlength,include_revers
                     end_l.append(end_c)
                     reading_l.append(reading)
                     reading_frames.append(read_frame)
+                    orf_length=end_c-start_c
+                    ORF_length_l.append(orf_length)
                     add=0
                     read_frame=""
-        return reading_frames,reading_l,start_l,end_l
+        return reading_frames,reading_l,start_l,end_l,ORF_length_l
     def getStart_and_stop_codons_front(full_nucleotide_sequence, include_reverse_orfs=True, include_front_ORFS=True):
         add = 0
         reading_frames = []  # Change this to a list
@@ -239,14 +247,15 @@ def getORFS_and_metadata_fromsequence(sequence,minaminoacidlength,include_revers
         return reading_frames
 
     list_of_list_ofsequences = getStart_and_stop_codons_front(sequence,include_reverse_orfs,include_front_ORFS)
-    metadata = {'ORF':[] , 'Reading Direction': [], 'Start codon': [], 'End codon': []}
-    for i in range(0,len(list_of_list_ofsequences)//4):
-        for x in range(0,len(list_of_list_ofsequences[i*4+0])):
-            if len(Transle_nucleotide_sequence_to_aminoacids(list_of_list_ofsequences[i*4+0][x]))>=minaminoacidlength:
-              metadata['ORF'].append(list_of_list_ofsequences[i*4+0][x])
-              metadata['Reading Direction'].append(list_of_list_ofsequences[i*4+1][x])
-              metadata['Start codon'].append(int(list_of_list_ofsequences[i*4+2][x]))
-              metadata['End codon'].append(int(list_of_list_ofsequences[i*4+3][x]))
+    metadata = {'ORF':[] , 'Reading Direction': [], 'Start codon': [], 'End codon': [], 'ORFLength':[]}
+    for i in range(0,len(list_of_list_ofsequences)//5):
+        for x in range(0,len(list_of_list_ofsequences[i*5+0])):
+            if len(Transle_nucleotide_sequence_to_aminoacids(list_of_list_ofsequences[i*5+0][x]))>=minaminoacidlength:
+              metadata['ORF'].append(list_of_list_ofsequences[i*5+0][x])
+              metadata['Reading Direction'].append(list_of_list_ofsequences[i*5+1][x])
+              metadata['Start codon'].append(int(list_of_list_ofsequences[i*5+2][x]))
+              metadata['End codon'].append(int(list_of_list_ofsequences[i*5+3][x]))
+              metadata['ORFLength'].append(int(list_of_list_ofsequences[i*5+4][x]))
     return metadata
 
 def get_nucleotidesequencefrom_gbfile(filename):
