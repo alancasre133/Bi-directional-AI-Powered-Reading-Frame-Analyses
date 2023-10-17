@@ -225,6 +225,35 @@ def readfileGeneratedData(filename):
       chains.append(line.strip())
   return chains[len(chains)-1]
 
+def Inrange(aSS,aEE,bSS,bEE):
+  # Definición de los intervalos
+  if aSS>aEE:
+     aS=aEE
+     aE=aSS
+  elif aSS<=aEE:
+     aS=aSS
+     aE=aEE
+  if bSS>bEE:
+     bS=bEE
+     bE=bSS
+  elif bSS<=bEE:
+     bS=bSS
+     bE=bEE
+  linea_1_inicio = bS
+  linea_1_fin = bE
+
+  linea_2_inicio = aS
+  linea_2_fin = aE
+
+  # Comprobación de si la segunda línea está dentro del rango de la primera línea
+  if linea_1_inicio <= linea_2_inicio and linea_2_fin <= linea_1_fin:
+      return 1
+  elif (linea_2_inicio >= linea_1_inicio and linea_2_inicio <= linea_1_fin) or (linea_2_fin >= linea_1_inicio and linea_2_fin <= linea_1_fin):
+      return 1
+  else: 
+     return 0
+
+
 """
 geneticcode = get_nucleotidesequencefrom_gbfile("PorcineCircovirus.gb")
 
@@ -236,6 +265,18 @@ for i in geneticcode:
 geneticcode,Organism=get_nucleotidesequence_and_metadata_from_gbfile("sequence (3).gb")
 geneticcode=get_nucleotidesequencefrom_gbfile("sequence (3).gb")
 
-for i in geneticcode:
-  ORFSL = getORFS_and_metadata_fromsequence(i,minaminoacidlength=25)
-  print(ORFSL)
+frames_list = []
+for j in geneticcode:
+  ORFSL = getORFS_and_metadata_fromsequence(j,minaminoacidlength=25)
+  print(ORFSL['End codon'])
+  print(ORFSL['Start codon'])
+  print(ORFSL['ORFLength'])
+  for x in range(0,len(ORFSL['End codon'])):
+    nesting = 0
+    nested = -1
+    for i in range(0,len(ORFSL['End codon'])):
+      if x!=i and ORFSL['ORFLength'][x]<ORFSL['ORFLength'][i] and Inrange(ORFSL['End codon'][x],ORFSL['Start codon'][x],ORFSL['End codon'][i],ORFSL['Start codon'][i])==1:
+        nesting+=1
+    frames_list.append(nesting)
+        
+  print(frames_list)
