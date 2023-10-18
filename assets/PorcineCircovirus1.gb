@@ -1,0 +1,85 @@
+LOCUS       KC447455                1759 bp    DNA     circular VRL 16-APR-2013
+DEFINITION  Porcine circovirus 1 isolate PCV1-XFD-Beijing, complete genome.
+ACCESSION   KC447455
+VERSION     KC447455.1
+KEYWORDS    .
+SOURCE      Porcine circovirus 1
+  ORGANISM  Porcine circovirus 1
+            Viruses; Monodnaviria; Shotokuvirae; Cressdnaviricota;
+            Arfiviricetes; Cirlivirales; Circoviridae; Circovirus; Circovirus
+            porcine1.
+REFERENCE   1  (bases 1 to 1759)
+  AUTHORS   Guo,T., Du,J.L., Guo,S.Y. and Yu,J.
+  TITLE     Isolation and analysis of porcine circovirus 1 in NIFDC of China
+  JOURNAL   Unpublished
+REFERENCE   2  (bases 1 to 1759)
+  AUTHORS   Guo,T., Du,J.L., Guo,S.Y. and Yu,J.
+  TITLE     Direct Submission
+  JOURNAL   Submitted (06-JAN-2013) Division of Enterovirus Vaccine, National
+            Institute for Food and Drug Control, The Temple of Heaven Xili 2,
+            Beijing 100050, China
+COMMENT     ##Assembly-Data-START##
+            Assembly Method       :: Seqman v. 5.00
+            Sequencing Technology :: Sanger dideoxy sequencing
+            ##Assembly-Data-END##
+FEATURES             Location/Qualifiers
+     source          1..1759
+                     /organism="Porcine circovirus 1"
+                     /mol_type="genomic DNA"
+                     /isolate="PCV1-XFD-Beijing"
+                     /host="pig"
+                     /db_xref="taxon:133704"
+                     /country="China"
+                     /collection_date="01-Sep-2010"
+     CDS             47..985
+                     /codon_start=1
+                     /product="replication associated protein"
+                     /protein_id="AGI99549.1"
+                     /translation="MPSKKSGPQPHKRWVFTLNNPSEEEKNKIRELPISLFDYFVCGE
+                     EGLEEGRTPHLQGFANFAKKQTFNKVKWYFGARCHIEKAKGTDQQNKEYCSKEGHILI
+                     ECGAPRNQGKRSDLSTAVSTLLETGSLVTVAEQFPVTYVRNFRGLAELLKVSGKMQQR
+                     DWKTAVHVIVGPPGCGKSQWARNFAEPSDTYWKPSRNKWWDGYHGEEVVVLDDFYGWL
+                     PWDDLLRLCDRYPLTVETKGGTVPFLARSILITSNQAPQEWYSSTAVPAVEALYRRIT
+                     TLQFWKTAGEQSTEVPEGRFEAVDPPCALFPYKINY"
+     CDS             complement(1022..1723)
+                     /codon_start=1
+                     /product="capsid protein"
+                     /protein_id="AGI99550.1"
+                     /translation="MTWPRRRYRRRRTRPRSHLGNILRRRPYLAHPAFRNRYRWRRKT
+                     GIFNSRLSREFVLTIKGGYSQPSWNVNHLKFNIGQFLPPSGGTNPLPLPFQYYRIRKA
+                     KYEFYPRDPITSNQRGVGSTVVILDANFVTPSTNLAYDPYINYSSRHTIRQPFTYHSR
+                     YFTPKPELDQTIDWFHPNNKRNQLWLHLNTHTNVEHTGLGYALQNAATAQNYVVRLTI
+                     YVQFREFILKDPLNK"
+ORIGIN      
+        1 accagcgcac ttcggcagcg gcagcacctc ggcagcgtca gtgaaaatgc caagcaagaa
+       61 aagcggcccg caaccccata agaggtgggt gttcaccctt aataatcctt ccgaggagga
+      121 gaaaaacaaa atacgggagc ttccaatctc cctttttgat tattttgttt gcggagagga
+      181 aggtttggaa gagggtagaa ctcctcacct ccaggggttt gcgaattttg ctaagaagca
+      241 gacttttaac aaggtgaagt ggtattttgg tgcccgctgc cacatcgaga aagcgaaagg
+      301 aaccgaccag cagaataaag aatactgcag taaagaaggc cacatactta tcgagtgtgg
+      361 agctccgcgg aaccagggga agcgcagcga cttgtctact gctgtgagta cccttttgga
+      421 gacggggtct ttggtgactg tagccgagca gttccctgta acgtatgtga gaaatttccg
+      481 cgggctggct gaacttttga aagtgagcgg gaagatgcag cagcgtgatt ggaagacagc
+      541 tgtacacgtc atagtgggcc cgcccggttg tgggaagagc cagtgggccc gtaattttgc
+      601 tgagcctagc gacacctact ggaagcctag tagaaataag tggtgggatg gatatcatgg
+      661 agaagaagtt gttgttttgg atgattttta tggctggtta ccttgggatg atctactgag
+      721 actgtgtgac cggtatccat tgactgtaga gactaaaggg ggtactgttc cttttttggc
+      781 ccgcagtatt ttgattacca gcaatcaggc cccccaggaa tggtactcct caactgctgt
+      841 cccagctgta gaagctctct atcggaggat tactactttg caattttgga agactgctgg
+      901 agaacaatcc acggaggtac ccgaaggccg atttgaagca gtggacccac cctgtgccct
+      961 tttcccatat aaaataaatt actgagtctt ttttgttatc acatcgtaat ggtttttatt
+     1021 tttatttatt tagagggtct tttaggataa attctctgaa ttgtacataa atagtcagcc
+     1081 ttaccacata attttgggct gtggctgcat tttggagcgc atagccgagg cctgtgtgct
+     1141 cgacattggt gtgggtattt aaatggagcc acagctggtt tcttttatta tttgggtgga
+     1201 accaatcaat tgtttggtcc agctcaggtt tgggggtgaa gtacctggag tggtaggtaa
+     1261 agggctgcct tatggtgtgg cgggaggagt agttaatata ggggtcatag gccaagttgg
+     1321 tggagggggt tacaaagttg gcatccaaga taacaacagt ggacccaaca cctctttgat
+     1381 tagaggtgat ggggtctctg gggtaaaatt catatttagc ctttctaata cggtagtatt
+     1441 ggaaaggtag gggtagtggg ttggtgccgc ctgagggggg gaggaactgg ccgatgttga
+     1501 atttgaggtg gttaacattc caagatggct gcgagtatcc tccttttatg gtgagtacaa
+     1561 attctctaga aaggcgggaa ttgaagatac ccgtctttcg gcgccatctg taacggtttc
+     1621 tgaaggcggg gtgtgccaaa tatggtcttc tccggaggat gtttccaaga tggctgcggg
+     1681 ggcgggtcct tcttctgcgg taacgcctcc ttggccacgt catcctataa aagtgaaaga
+     1741 agtgcgctgc tgtagtatt
+//
+

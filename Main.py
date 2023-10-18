@@ -262,15 +262,13 @@ for i in geneticcode:
   print("Virus")
   for ORFS in ORFSL:
      print(ORFS)"""
-geneticcode,Organism=get_nucleotidesequence_and_metadata_from_gbfile("sequence (3).gb")
-geneticcode=get_nucleotidesequencefrom_gbfile("sequence (3).gb")
-
+geneticcode,Organism=get_nucleotidesequence_and_metadata_from_gbfile("PorcineCircovirus2.gb")
+geneticcode=get_nucleotidesequencefrom_gbfile("PorcineCircovirus2.gb")
+print(geneticcode)
 frames_list = []
 for j in geneticcode:
-  ORFSL = getORFS_and_metadata_fromsequence(j,minaminoacidlength=25)
-  print(ORFSL['End codon'])
-  print(ORFSL['Start codon'])
-  print(ORFSL['ORFLength'])
+  ORFSL = getORFS_and_metadata_fromsequence(j,minaminoacidlength=25,include_front_ORFS=False)
+  print(ORFSL)
   for x in range(0,len(ORFSL['End codon'])):
     nesting = 0
     nested = -1

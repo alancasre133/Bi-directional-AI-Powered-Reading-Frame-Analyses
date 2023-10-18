@@ -251,7 +251,7 @@ def getORFS_and_metadata_fromsequence(sequence,minaminoacidlength,include_revers
     for i in range(0,len(list_of_list_ofsequences)//5):
         for x in range(0,len(list_of_list_ofsequences[i*5+0])):
             if len(Transle_nucleotide_sequence_to_aminoacids(list_of_list_ofsequences[i*5+0][x]))>=minaminoacidlength:
-              metadata['ORF'].append(list_of_list_ofsequences[i*5+0][x])
+              metadata['ORF'].append(Transle_nucleotide_sequence_to_aminoacids(list_of_list_ofsequences[i*5+0][x]))
               metadata['Reading Direction'].append(list_of_list_ofsequences[i*5+1][x])
               metadata['Start codon'].append(int(list_of_list_ofsequences[i*5+2][x]))
               metadata['End codon'].append(int(list_of_list_ofsequences[i*5+3][x]))
