@@ -181,7 +181,7 @@ def Inrange(aSS,aEE,bSS,bEE):
      return 0
 
 
-def getORFS_and_metadata_fromsequence(sequence,minaminoacidlength,include_reverse_orfs=True,include_front_ORFS=True,OrganismName=None):
+def getORFS_and_metadata_fromsequence(sequence,minaminoacidlength,include_reverse_orfs=True,include_front_ORFS=True,OrganismName=None,Definition=None):
     def search_proteins_by_index_reverse_circle(full_nucleotide_sequence,start):
         add=0
         reading_frames = []
@@ -298,6 +298,11 @@ def getORFS_and_metadata_fromsequence(sequence,minaminoacidlength,include_revers
         for nested in metadata["Nesting Level"]:
             Organisms.append(OrganismName)
         metadata['Organism Name']=Organisms
+    if Definition!=None:
+        Organisms = []
+        for nested in metadata["Nesting Level"]:
+            Organisms.append(Definition)
+        metadata['Definition']=Organisms
     return metadata
 
 def get_nucleotidesequencefrom_gbfile(filename):
@@ -339,11 +344,21 @@ def get_nucleotidesequence_and_metadata_from_gbfile(filename):
     def getOrganism(string):
         pattern = r'ORGANISM\s+([\s\S]*?)\n'
         nucleotides_noise = re.findall(pattern,string,re.DOTALL)
-        return nucleotides_noise[0]
+        return nucleotides_noise
+    def getDefinition(string):
+        pattern = r'DEFINITION\s+([\s\S]*?)ACCESSION'
+        nucleotides_noise = re.findall(pattern,string,re.DOTALL)
+        new = []
+        a = ""
+        for i in nucleotides_noise:
+            a= i.replace("\n", "")
+            a = a.replace("  ","")
+            new.append(a.strip())
+        return new
     #Obtiene las secuencias de nucleotidos completas por cada virus en el archivo
     path = r"assets\\"
     file = open(path+filename,"r")
     Data1 = file.read()
     Data = getSequence(Data1)
 
-    return Data,getOrganism(Data1)
+    return Data,getOrganism(Data1),getDefinition(Data1)
