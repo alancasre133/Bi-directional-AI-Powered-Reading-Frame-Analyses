@@ -4,11 +4,20 @@ import csv
 import time
 import platform
 
+def delimit(ORF_ROWS):
+  available =  ORF_ROWS[((ORF_ROWS['Reading Direction'] == 'left to right') & (ORF_ROWS['Nesting Level'] == '0'))]
+  Data = ORF_ROWS[((ORF_ROWS['Reading Direction'] == 'left to right') & (ORF_ROWS['Nesting Level'] == '0')) | ((ORF_ROWS['Nesting Level'] != '0') & (ORF_ROWS['Reading Direction'] == 'right to left'))]
+  print("These are the ORFS you can analyse, select one to choose his nested ORF to analyse:")
+  index=1
+  for i in list(available['ORF']):
+    print(str(index) + ". " + "Organism Definition: "+ list(available["Definition"])[0] + " , ORF:"+ i)
+    index+=1
 def analyzeoption(rows,startquery,endquery,columnnames):
-  
+  print()  
   Data = pd.DataFrame(rows[startquery:endquery],columns=columnnames)
+  print("Advertisement: For the analysis of ORFS in this algorithm we will only include those that go in the direction of reading from left to right and the ORFS nested to this")
   print(Data)
-
+  delimit(Data)
 def cleanscreen():
   time.sleep(1)
   if platform.system()=='Windows':
