@@ -175,7 +175,7 @@ def Inrange(aSS,aEE,bSS,bEE):
   # Comprobación de si la segunda línea está dentro del rango de la primera línea
   if linea_1_inicio <= linea_2_inicio and linea_2_fin <= linea_1_fin:
       return 1
-  elif (linea_2_inicio >= linea_1_inicio and linea_2_inicio <= linea_1_fin) or (linea_2_fin >= linea_1_inicio and linea_2_fin <= linea_1_fin):
+  if (linea_2_inicio >= linea_1_inicio and linea_2_inicio <= linea_1_fin) or (linea_2_fin >= linea_1_inicio and linea_2_fin <= linea_1_fin):
       return 1
   else: 
      return 0
