@@ -1,10 +1,10 @@
-SEQUENCE_1 = 'accagcgcacttcggcagcggcagcacctcggcagcagctcggcagcaacaagcccagcaagaagaatggaagaagcggaccccaaccccataaaaggtgggtgttcacactgaataatccttccgaagacgagcgcaagaaaatacgggatattccaatatccctatttgcttattttatcgttggcgaggagggtaatgaggaaggacgaacacctcacctccaggggttagctaattttgtgaagaagcagacttttaataaagtgaggtggtatttaggtgcccgctgccacttcgagaaagcgaaaggaacagatcagcagaataaagaatactgcagtaaagaaggcaacttactgatggagtgtggagctcctagatctcagggacaacggagtgacctgtctactgctgtgagtaccttgttggagagcgggagtctggtgaccgttgcagagcagcaccctgtaacgtttgtcaggaatttccgcgggctggttgaactcttgaaagtgagcgggcaaatgcagaagcgtgattggaagactaatgtacacgtcattgtggggccacctgggtgtggtaaaagcaaatgggctgctaattttgcagacccggaaaccacatactggaaaccacctagaaacaagtggtgggatggttaccatggtgaagaagtggttgttattgatgacttttatggctggctgccctgggatgagctactgagactgtatgaaagatatccattgactgtagagactcaaggtggaactgtgccttttttggccctcattattctgattaccagcaatcagaccccgttggaatggtactcctcaactgctgtcccagctgtagaagctctttatcggaggattatttccttcgtattttggaagaatgctacagaacaatccacggaggaagggggccagttcgtcaccctttcccccccatgccctgaatttccatatgaaataaattactgagtcttttttatcacttcgtaatggtttttattattcattaggggttaagtggggggtccttaagattaaattctctgaattgtacatacatggttacacggatattgtattcctggtcgtatatactgttttcgtacgaagtgccgaggcctacgtggtctacattttcagtagtttgtagtctcagccacagctgatttcttttgttgtttggttggaagtaatcaataggggaatctaggacaggtttgggggtaaagtagcgggagtggtaggagaagggctgggttatggtatggcgggaggagtagtttacataggggtcataggtgagggctgtggcctttgttacaaagttatcatctagaataacagcactggagcccactcccctgtcaccctgggtgatcggggagcagggccagaattcaaccttaacctttcttattctgtagtattcaaagggcacagagcgggggtttgagccccctcctgggggaagaaagtcattaatattgaatcccatcatgtccaccgcccaggagggcgttttgcctgtggttcgcttgatagtatatccgaaggtgggggagaggcgggtattgaagatgccatttttccttctccagcggtaacggtggcgggggtggacgagccaggggcggcggcggaggatctggccaagatggttgcggggacggtgtcttcttctccggtaacgcctccttggatacgtcatatctggaaacgaaagaagtgcgctgtaagtatt' #Sequence 1 (Side Sequence)
-SEQUENCE_2 = 'accagcgcacttcggcagcggcagcacctcggcagcagctcggcagcaacaagcccagcaagaagaatggaaaagcggaccccaaccccataaaaggtgggtgttcacactgaataatccttccgaagacgagcgcaagaaaatacgggatattccaatatccctatttgcttattttatcgttggcgaggagggtaatgaggaaggacgaacacctcacctccaggggttagctaattttgtgaagaagcagacttttaataaagtgaggtggtatttaggtgcccgctgccacttcgagaaagcgaaaggaacagatcagcagaataaagaatactgcagtaaagaaggcaacttactgatggagtgtggagctcctagatctcagggacaacggagtgacctgtctactgctgtgagtaccttgttggagagcgggagtctggtgaccgttgcagagcagcaccctgtaacgtttgtcaggaatttccgcgggctggttgaactcttgaaagtgagcgggcaaatgcagaagcgtgattggaagactaatgtacacgtcattgtggggccacctgggtgtggtaaaagcaaatgggctgctaattttgcagacccggaaaccacatactggaaaccacctagaaacaagtggtgggatggttaccatggtgaagaagtggttgttattgatgacttttatggctggctgccctgggatgagctactgagactgtatgaaagatatccattgactgtagagactcaaggtggaactgtgccttttttggccctcattattctgattaccagcaatcagaccccgttggaatggtactcctcaactgctgtcccagctgtagaagctctttatcggaggattatttccttcgtattttggaagaatgctacagaacaatccacggaggaagggggccagttcgtcaccctttcccccccatgccctgaatttccatatgaaataaattactgagtcttttttatcacttcgtaatggtttttattattcattaggggttaagtggggggtccttaagattaaattctctgaattgtacatacatggttacacggatattgtattcctggtcgtatatactgttttcgtacgaagtgccgaggcctacgtggtctacattttcagtagtttgtagtctcagccacagctgatttcttttgttgtttggttggaagtaatcaataggggaatctaggacaggtttgggggtaaagtagcgggagtggtaggagaagggctgggttatggtatggcgggaggagtagtttacataggggtcataggtgagggctgtggcctttgttacaaagttatcatctagaataacagcactggagcccactcccctgtcaccctgggtgatcggggagcagggccagaattcaaccttaacctttcttattctgtagtattcaaagggcacagagcgggggtttgagccccctcctgggggaagaaagtcattaatattgaatcccatcatgtccaccgcccaggagggcgttttgcctgtggttcgcttgatagtatatccgaaggtgggggagaggcgggtattgaagatgccatttttccttctccagcggtaacggtggcgggggtggacgagccaggggcggcggcggaggatctggccaagatggttgcggggacggtgtcttcttctccggtaacgcctccttggatacgtcatatctggaaacgaaagaagtgcgctgtaagtatt' #Sequence 2 (Top Sequence)
-MATRIX_ROW_N = len(SEQUENCE_1)+1 #Initiation Matrix Size (Rows)
-MATRIX_COLUMN_N = len(SEQUENCE_2)+1 #Initiation Matrix Size (Columns)
-MATCH_SCORE = 5 #Match Score
-MISMATCH_SCORE = -3 #Mismatch Score
-GAP_SCORE = -5 #Gap Points
+SEQUENCE_1="ss"
+SEQUENCE_2="as"
+MATRIX_ROW_N = len(SEQUENCE_1) #Initiation Matrix Size (Rows)
+MATRIX_COLUMN_N = len(SEQUENCE_2) #Initiation Matrix Size (Columns)
+MATCH_SCORE = 1 #Match Score
+MISMATCH_SCORE = 0 #Mismatch Score
+GAP_SCORE = 0 #Gap Points
 GAP_CHARACTER = '-'#Character to Represent Gaps in Final Alignemnts
 ALN_PATHWAYS = [] #Initiating List of Discovered aln Pathways
 MATRIX = [[[[None] for i in range(2)] for i in range(MATRIX_COLUMN_N)] for i in range(MATRIX_ROW_N)] # Initiating Score Matrix
@@ -29,12 +29,15 @@ def print_alns_only(ALIGNMENTS): #Function to print only ALIGNMENTS
     for elem in ALIGNMENTS:
         print(elem[0]+'\n'+elem[1]+'\n')
     return
+    
 def find_each_path(c_i,c_j,path=''): #Nested function to discover new aln pathways
     global ALN_PATHWAYS 
     i = c_i 
     j = c_j 
     if i == 0 and j==0: 
+        
         ALN_PATHWAYS.append(path) 
+        
         return 2 
     dir_t = len(MATRIX[i][j][1]) 
     while dir_t<=1: 
@@ -64,7 +67,8 @@ def find_each_path(c_i,c_j,path=''): #Nested function to discover new aln pathwa
             elif n_dir == 3:
                 n_i=i-1
                 n_j = j
-            find_each_path(n_i,n_j,tmp_path)
+            if(len(ALN_PATHWAYS)<=10):
+                find_each_path(n_i,n_j,tmp_path)
     return len(ALN_PATHWAYS)
 
 #Main Code
@@ -85,8 +89,8 @@ def pair_alignment(SEQUENCE1,SEQUENCE2,MATCHSCORE=1,MISMATCHSCORE=0,GAPSCORE=0):
     GAP_SCORE = GAPSCORE
     SEQUENCE_1=SEQUENCE1
     SEQUENCE_2=SEQUENCE2
-    MATRIX_ROW_N = len(SEQUENCE_1)+1 #Initiation Matrix Size (Rows)
-    MATRIX_COLUMN_N = len(SEQUENCE_2)+1 #Initiation Matrix Size (Columns)
+    MATRIX_ROW_N = len(SEQUENCE_1) #Initiation Matrix Size (Rows)
+    MATRIX_COLUMN_N = len(SEQUENCE_2) #Initiation Matrix Size (Columns)
     MATRIX = [[[[None] for i in range(2)] for i in range(MATRIX_COLUMN_N)] for i in range(MATRIX_ROW_N)] # Initiating Score Matrix
 
     for i in range(MATRIX_ROW_N):
@@ -122,12 +126,12 @@ def pair_alignment(SEQUENCE1,SEQUENCE2,MATCHSCORE=1,MISMATCHSCORE=0,GAPSCORE=0):
             score = MATRIX[i+1][j+1][0]
             step = step + 1
             aln_info.append([step,score,n_dir])
-            if n_dir == '2':
+            if n_dir == '2' and j>=0:
                 side_aln = side_aln + SEQUENCE_1[i]
                 top_aln = top_aln + SEQUENCE_2[j]
                 i=i-1
                 j=j-1
-            elif n_dir == '1':
+            elif n_dir == '1' and j>=0:
                 side_aln = side_aln + GAP_CHARACTER
                 top_aln = top_aln + SEQUENCE_2[j]
                 j=j-1
@@ -137,5 +141,5 @@ def pair_alignment(SEQUENCE1,SEQUENCE2,MATCHSCORE=1,MISMATCHSCORE=0,GAPSCORE=0):
                 i=i-1
         aln_count = aln_count + 1
         ALIGNMENTS.append([top_aln[::-1],side_aln[::-1],elem,aln_info,aln_count])
-        print_alns_only(ALIGNMENTS)
-
+        #print_alns_only(ALIGNMENTS)
+    return int(ALIGNMENTS[0][3][0][1])

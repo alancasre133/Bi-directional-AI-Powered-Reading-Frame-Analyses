@@ -1,0 +1,90 @@
+LOCUS       OQ658351                1770 bp    DNA     circular VRL 10-JUL-2023
+DEFINITION  Porcine circovirus 4 isolate HeN-3 Rep and Cap genes, complete cds.
+ACCESSION   OQ658351
+VERSION     OQ658351.1
+KEYWORDS    .
+SOURCE      Porcine circovirus 4
+  ORGANISM  Porcine circovirus 4
+            Viruses; Monodnaviria; Shotokuvirae; Cressdnaviricota;
+            Arfiviricetes; Cirlivirales; Circoviridae; Circovirus; Circovirus
+            porcine4.
+REFERENCE   1  (bases 1 to 1770)
+  AUTHORS   Chen,X.M., Zhao,Y.Y., Liu,X.C., Han,Y.Y., Zhang,Y.H., Hou,C.Y.,
+            Zheng,L.L., Ma,S.J. and Chen,H.Y.
+  TITLE     Molecular detection and genetic characteristics of a novel porcine
+            circovirus (porcine circovirus 4) and porcine reproductive and
+            respiratory syndrome virus in Shaanxi and Henan Provinces of China
+  JOURNAL   Comp Immunol Microbiol Infect Dis 98, 102009 (2023)
+   PUBMED   37390696
+REFERENCE   2  (bases 1 to 1770)
+  AUTHORS   Chen,X., Zhao,Y. and Chen,H.
+  TITLE     Direct Submission
+  JOURNAL   Submitted (17-MAR-2023) Henan Agricultural University, College of
+            Veterinary Medicine, 218 Ping An Avenue, Zhengdong New District,
+            Zheng Zhou, Henan 450046, China
+COMMENT     ##Assembly-Data-START##
+            Sequencing Technology :: Sanger dideoxy sequencing
+            ##Assembly-Data-END##
+FEATURES             Location/Qualifiers
+     source          1..1770
+                     /organism="Porcine circovirus 4"
+                     /mol_type="genomic DNA"
+                     /isolate="HeN-3"
+                     /host="porcine"
+                     /db_xref="taxon:2686039"
+                     /country="China: Henan"
+                     /collection_date="Oct-2022"
+     CDS             75..965
+                     /note="replication-associated protein"
+                     /codon_start=1
+                     /product="Rep"
+                     /protein_id="WIF26795.1"
+                     /translation="MIMAGHPVKRYCFTLNNYTEEEEKKIKEFLTSENCEYAVVGKEV
+                     GENGTPHLQGFVNLKKKMRFHPFKKAIGERSHIEQARGTDCDNKKYCSKGGDLLLEVG
+                     EPSAQGKRSDLKAAVAALNAGSSMSEVAREFPSVFIRYGRGLRDYVITAGLGQSREWK
+                     TEVHVIVGIPGVGKSRHVQEKGGADLFWKPRGKWWDGYNGQSHVVLDDYYGLLPYDDL
+                     LRLMDRYPLRVETKGGSIEFLAKTMWITSNKQIKDWYDYVELKVDIRALYRRVTTYQV
+                     MRVDGQLYDIQMTGDNKINY"
+     CDS             complement(1047..1733)
+                     /note="capsid protein"
+                     /codon_start=1
+                     /product="Cap"
+                     /protein_id="WIF26794.1"
+                     /translation="MPIRSRYSRRRRNRRNQRRRGLWPRANRRRYRWRRKNGIFHARF
+                     MREVTLSVSSFSTPSWNVGHYDFKLKDFIPKGPGTIVNLYSLPFAYYRIRKVKVEFLP
+                     LNGINSNRTYSSTAIQLDGDYVGEGKNQTYDVLANHSSRHGFTNIARHSRYFTPKPQD
+                     PSGETHTLHFQPNNKRNQWWISMADQDLVHHGLQYSIQNSNFVQVWTVRFTMYVQFRE
+                     FDLVNYPKQG"
+ORIGIN      
+        1 cagtattacc cgagacatcg gcacacttcg gcacaatctc gcgccgctcg attgtgccga
+       61 gcacccccct accgatgata atggcgggcc accccgtgaa gagatattgt ttcactctta
+      121 acaactacac agaagaggag gagaagaaaa ttaaagaatt ccttacctct gagaactgtg
+      181 agtacgctgt tgtcgggaag gaggtcggag aaaatggcac cccgcacttg caagggtttg
+      241 tgaacctgaa aaagaaaatg aggttccacc cgtttaagaa agctatcgga gagcggagcc
+      301 atattgagca ggcccgcggt actgattgtg ataacaagaa gtattgctcc aaaggagggg
+      361 acttactact ggaagtagga gagcccagtg cccagggaaa gcgcagcgac cttaaagcgg
+      421 ctgtggccgc cctgaatgcc ggcagctcaa tgagtgaagt ggcccgtgag ttcccgtctg
+      481 tatttataag gtatgggcgt ggcctccggg actacgtcat taccgcaggc ctgggccagt
+      541 cccgggagtg gaagactgaa gtgcacgtca tcgtgggtat ccccggcgtg ggcaagtcta
+      601 gacatgtcca agagaagggg ggtgcggacc tcttctggaa accacgtggc aagtggtggg
+      661 atggatataa tggccagagt cacgtggtcc tggatgacta ttatggcttg ttgccatatg
+      721 atgacctgtt gagactcatg gacagatacc ctctccgtgt ggagacaaag gggggttcca
+      781 ttgagttctt ggccaagaca atgtggatta ccagcaacaa gcagatcaag gactggtatg
+      841 attatgtgga gctgaaagtg gatattagag ccctgtaccg gcgcgtgacc acctatcagg
+      901 tcatgagggt ggatgggcag ttgtatgata tacaaatgac aggagacaat aaaatcaatt
+      961 attaaacaga ctttatttgt gtcatcactt cggatactac acttgatctt agccaaaagg
+     1021 ctcgttgatt gagtgatcac tacgcattat ccctgtttgg ggtagttaac aagatcaaat
+     1081 tctctgaatt gcacatacat agtaaatctc acagtccaca cctgcacaaa gttagaattt
+     1141 tgtatactgt attggaggcc atgatggact aggtcctggt ccgccatgct gatccaccat
+     1201 tggtttcttt tgttgttagg ctggaagtgg agggtgtggg tttccccgga tgggtcctgg
+     1261 ggttttggag tgaaatagcg actgtgtcta gcaatattgg tgaaaccatg cctgctgctg
+     1321 tggtttgcca ggacatcata agtttggttt ttcccttccc ccacatagtc tccatccagt
+     1381 tgtatagcag tgctagagta agtcctatta ctgttaatgc catttagtgg cagaaattcg
+     1441 actttgacct ttctgatccg gtaatatgca aatgggaggc tgtagaggtt tacgatcgtt
+     1501 cccggtcctt ttgggataaa gtccttcagt ttgaaatcgt aatgtccaac gttccaagag
+     1561 ggcgtggaaa agcttgacac gctgagagtc acctccctca tgaagcgcgc atggaaaatt
+     1621 ccgttcttcc ttctccaccg gtatctccgc ctattggccc ggggccacag tccccgcctg
+     1681 cgctggttcc gccggttccg cctccgtctg ctgtacctag atctgattgg catctgtggg
+     1741 tggtgggcgg ggtgtgccga tgtctcggtt
+//
+

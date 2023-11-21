@@ -4,8 +4,12 @@ import csv
 import time
 import platform
 import json as j
+from align import *
 
-def createjson(path):
+def compare(Row_Selected):
+  print()
+
+def createdjson(path):
   path = path.split("\\")
   value = -1
   if (os.path.isfile(path[0]+"\\"+path[1]) and os.stat(path[0]+"\\"+path[1]).st_size != 0):
@@ -68,7 +72,46 @@ def Inrange(aSS,aEE,bSS,bEE):
   else: 
      return 0
 
+def checkmatchself(Data_rows,op):
+  print()
 
+def createJSON(Data_rows,op):
+  if createdjson("AnalyzedORFS\\matchs.json")==2:
+    with open('AnalyzedORFS\\matchs.json','r') as json_file:
+      d = j.load(json_file)
+    df = pd.DataFrame(d)
+    print(d['Organism Name'])
+    #df = pd.DataFrame.from_dict([d],orient='columns')
+    #print(df)
+    df.to_excel('AnalyzedORFS\\exported_json_data.xlsx')
+  if createdjson("AnalyzedORFS\\matchs.json")==1:
+    Row_Selected = {'OrganismName': (Data_rows.iloc[op-1])['Definition'],'Nucleotide Sequence':(Data_rows.iloc[op-1])['NucleotideSequence'],'ORFanalyzed':(Data_rows.iloc[op-1])['ORF'],'Matchs':[]}
+    Row_Selected = (Data_rows.iloc[op-1]).to_dict()
+    Row_Selected['Similarity']=[]
+    Row_Selected['Matchs']=[]
+    for i in range(0,len(Data_rows)):
+      if i!=(op-1):
+        if len(str(Data_rows.iloc[i]['ORF']))<len(str(Data_rows.iloc[op-1]['ORF'])):
+          x=pair_alignment(str(Data_rows.iloc[i]['ORF']),str(Data_rows.iloc[op-1]['ORF']))
+        else:
+          x=pair_alignment(str(Data_rows.iloc[op-1]['ORF']),str(Data_rows.iloc[i]['ORF']))
+        x=x/len(str(Data_rows.iloc[op-1]['ORF']))
+        if x>=0.35:
+          print(x)
+          Row_Selected['Matchs'].append(list(Data_rows.iloc[i]))
+          Row_Selected['Similarity'].append(str(x))
+          hr=str(x)
+    with open('AnalyzedORFS\\matchs.json', 'w') as json_file:
+      j.dump(Row_Selected, json_file)
+    
+    ((Data_rows.iloc[op-1]))
+
+def getNameFile(Organism,ORFaminoacid):
+  OrganismFile = Organism.replace(" ","_")
+  Prefix = ORFaminoacid[:3]
+  Sufix = ORFaminoacid[(len(ORFaminoacid))//2:(len(ORFaminoacid)//2+3)]
+  Pofix = ORFaminoacid[(len(ORFaminoacid))-3:(len(ORFaminoacid))]
+  return (OrganismFile+"-"+Prefix+Sufix+Pofix)
 def delimit(ORF_ROWS):
   available =  ORF_ROWS[((ORF_ROWS['Reading Direction'] == 'left to right') & (ORF_ROWS['Nesting Level'] == '0'))]
   Data = ORF_ROWS[((ORF_ROWS['Reading Direction'] == 'left to right') & (ORF_ROWS['Nesting Level'] == '0')) | ((ORF_ROWS['Nesting Level'] != '0') & (ORF_ROWS['Reading Direction'] == 'right to left'))]
@@ -96,12 +139,11 @@ def delimit(ORF_ROWS):
     #Inrange((available['End codon'])[op-1],(available['Start codon'])[op-1],(df.iloc[i])['End codon'][i],(df.iloc[i])['Start codon'][i])==1
     kernel.append(not Inrange(int((df.iloc[i])['End codon']),int((df.iloc[i])['Start codon']),int(list(available['End codon'])[op-1]),int(list(available['Start codon'])[op-1]))==1)
   df1 = (df.drop(df[kernel].index))
-  
-
     #print(str(int(list(available['End codon'])[op-1])) + "," + str(int(list(available['Start codon'])[op-1])) + "," + str(int((df.iloc[i])['End codon']))+ "," + str(int((df.iloc[i])['Start codon'])))
   for index,row in df1.iterrows():
     df1.at[index,'Start codon'],df1.at[index,'End codon']=updatepositions(int(list(available['End codon'])[op-1]),int(list(available['Start codon'])[op-1]),int(df1.at[index,'End codon']),int(df1.at[index,'Start codon']))
   index=1
+  h=0
   while True:
     cleanscreen()
     for i in range(0,len(df1)):
@@ -111,13 +153,16 @@ def delimit(ORF_ROWS):
     print("choose one to gather data and analyze among other ORFS in genetic codes")
     op = int(input())
     if(op-1>=0 and op-1<index):
+      cleanscreen()
+      h=op
       break
     else:
       print("Choose a valid option")
-    cleanscreen()
-    #imprimir a su padre
+  if (h!=index):
+    print(getNameFile(str((df1.iloc[op-1])['Definition']),str((df1.iloc[op-1])['ORF'])))
+    createJSON(df1,op)
+  #imprimir a su padre
 
-# Usar el método drop para eliminar las filas que cumplan con la máscar
 def analyzeoption(rows,startquery,endquery,columnnames):
   print()  
   Data = pd.DataFrame(rows[startquery:endquery],columns=columnnames)
