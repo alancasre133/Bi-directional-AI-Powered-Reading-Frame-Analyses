@@ -5,6 +5,9 @@ import time
 import platform
 import json as j
 from align import *
+class tree:
+  def __init__(self) -> None:
+    pass
 
 def compare(Row_Selected):
   print()
@@ -76,7 +79,71 @@ def checkmatchself(Data_rows,op):
   print()
 
 def createJSON(Data_rows,op):
-  if createdjson("AnalyzedORFS\\matchs.json")==2:
+  if createdjson("AnalyzedORFS\\matchs.json")==2 and createdjson("AnalyzedORFS\\exported_json_data.xlsx")!=1:
+    with open('AnalyzedORFS\\matchs.json','r') as json_file:
+      d = j.load(json_file)
+    df = pd.DataFrame(d)
+    print(d['Organism Name'])
+    excel =pd.read_excel("AnalyzedORFS\\exported_json_data.xlsx")
+    index=0
+    
+    Row_Selected = {'OrganismName': (Data_rows.iloc[op-1])['Definition'],'Nucleotide Sequence':(Data_rows.iloc[op-1])['NucleotideSequence'],'ORFanalyzed':(Data_rows.iloc[op-1])['ORF'],'Matchs':[]}
+    Row_Selected = (Data_rows.iloc[op-1]).to_dict()
+    Row_Selected['Similarity']=[]
+    Row_Selected['Matchs']=[]
+    for i in range(0,len(Data_rows)):
+      if i!=(op-1):
+        if len(str(Data_rows.iloc[i]['ORF']))<len(str(Data_rows.iloc[op-1]['ORF'])):
+          x=pair_alignment(str(Data_rows.iloc[i]['ORF']),str(Data_rows.iloc[op-1]['ORF']))
+        else:
+          x=pair_alignment(str(Data_rows.iloc[op-1]['ORF']),str(Data_rows.iloc[i]['ORF']))
+        x=x/len(str(Data_rows.iloc[op-1]['ORF']))
+        if x>=0.35:
+          print(x)
+          Row_Selected['Matchs'].append(list(Data_rows.iloc[i]))
+          Row_Selected['Similarity'].append(str(x))
+          hr=str(x)
+    
+    with open('DatabaseORFS\\out.csv') as file:
+      DataBaseORFS = [fila for fila in csv.reader(file, delimiter=',')]
+    os.system('cls')
+    print(len(DataBaseORFS))
+    Data = pd.DataFrame(DataBaseORFS[1:],columns=DataBaseORFS[0])
+    Data_rowssave=Data_rows
+    Data_rows=Data
+    
+    for i in range(0,len(Data)):
+      if i!=(op-1):
+        if len(str(Data_rows.iloc[i]['ORF']))<len(str(Data_rowssave.iloc[op-1]['ORF'])):
+          x=pair_alignment(str(Data_rows.iloc[i]['ORF']),str(Data_rowssave.iloc[op-1]['ORF']))
+        else:
+          x=pair_alignment(str(Data_rowssave.iloc[op-1]['ORF']),str(Data_rows.iloc[i]['ORF']))
+        x=x/len(str(Data_rowssave.iloc[op-1]['ORF']))
+        if x>=0.35:
+          print(x)
+          Row_Selected['Matchs'].append(list(Data_rows.iloc[i]))
+          Row_Selected['Similarity'].append(str(x))
+          hr=str(x)
+    
+    with open('AnalyzedORFS\\matchs.json', 'w') as json_file:
+      j.dump(Row_Selected, json_file)
+    #df = pd.DataFrame.from_dict([d],orient='columns')
+    #print(df)
+    if createdjson("AnalyzedORFS\\matchs.json")==2 and createdjson("AnalyzedORFS\\exported_json_data.xlsx")==2: 
+      with open('AnalyzedORFS\\matchs.json','r') as json_file:
+        d = j.load(json_file)
+      df = pd.DataFrame(d)
+    
+    df_existente = pd.read_excel('AnalyzedORFS\\exported_json_data.xlsx')
+    
+    # Concatenar el nuevo DataFrame con el existente
+    df_combinado = pd.concat([excel, df], ignore_index=False)
+    df_combinado = df_combinado.loc[:, ~df_combinado.columns.str.contains('^Unnamed')]
+    print(f"total longitud {index}")
+    df_combinado.to_excel('AnalyzedORFS\\exported_json_data.xlsx')
+    
+    return 
+  if createdjson("AnalyzedORFS\\matchs.json")==2 and createdjson("AnalyzedORFS\\exported_json_data.xlsx")==1:
     with open('AnalyzedORFS\\matchs.json','r') as json_file:
       d = j.load(json_file)
     df = pd.DataFrame(d)
@@ -101,10 +168,32 @@ def createJSON(Data_rows,op):
           Row_Selected['Matchs'].append(list(Data_rows.iloc[i]))
           Row_Selected['Similarity'].append(str(x))
           hr=str(x)
+    
+    with open('DatabaseORFS\\out.csv') as file:
+      DataBaseORFS = [fila for fila in csv.reader(file, delimiter=',')]
+    os.system('cls')
+    print(len(DataBaseORFS))
+    Data = pd.DataFrame(DataBaseORFS[1:],columns=DataBaseORFS[0])
+    Data_rowssave=Data_rows
+    Data_rows=Data
+    
+    for i in range(0,len(Data)):
+      if i!=(op-1):
+        if len(str(Data_rows.iloc[i]['ORF']))<len(str(Data_rowssave.iloc[op-1]['ORF'])):
+          x=pair_alignment(str(Data_rows.iloc[i]['ORF']),str(Data_rowssave.iloc[op-1]['ORF']))
+        else:
+          x=pair_alignment(str(Data_rowssave.iloc[op-1]['ORF']),str(Data_rows.iloc[i]['ORF']))
+        x=x/len(str(Data_rowssave.iloc[op-1]['ORF']))
+        if x>=0.35:
+          print(x)
+          Row_Selected['Matchs'].append(list(Data_rows.iloc[i]))
+          Row_Selected['Similarity'].append(str(x))
+          hr=str(x)
+    
     with open('AnalyzedORFS\\matchs.json', 'w') as json_file:
       j.dump(Row_Selected, json_file)
     
-    ((Data_rows.iloc[op-1]))
+    
 
 def getNameFile(Organism,ORFaminoacid):
   OrganismFile = Organism.replace(" ","_")

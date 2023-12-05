@@ -126,16 +126,16 @@ def pair_alignment(SEQUENCE1,SEQUENCE2,MATCHSCORE=1,MISMATCHSCORE=0,GAPSCORE=0):
             score = MATRIX[i+1][j+1][0]
             step = step + 1
             aln_info.append([step,score,n_dir])
-            if n_dir == '2' and j>=0:
+            if n_dir == '2' and j>=0 and i<len(SEQUENCE1) and i>=0:
                 side_aln = side_aln + SEQUENCE_1[i]
                 top_aln = top_aln + SEQUENCE_2[j]
                 i=i-1
                 j=j-1
-            elif n_dir == '1' and j>=0:
+            elif n_dir == '1' and j>=0 and i<len(SEQUENCE1) and i>=0:
                 side_aln = side_aln + GAP_CHARACTER
                 top_aln = top_aln + SEQUENCE_2[j]
                 j=j-1
-            elif n_dir == '3':
+            elif n_dir == '3' and i<len(SEQUENCE1) and i>=0:
                 side_aln = side_aln + SEQUENCE_1[i]
                 top_aln = top_aln + GAP_CHARACTER
                 i=i-1
