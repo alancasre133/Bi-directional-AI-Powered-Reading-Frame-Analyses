@@ -14,7 +14,5 @@ for j in geneticcode:
   Data['full_sequence']=j
   addOrganism_to_database(Data,"DatabaseORFS\\out.csv")
   index+=1
-
 analyzeORF()
-
-
+#dataset=pd.read_excel("AnalyzedORFS\exported_json_data.xlsx")
