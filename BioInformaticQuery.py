@@ -72,6 +72,7 @@ def Inrange(aSS,aEE,bSS,bEE):
 
 """
 def createJSON(Data_rows,op):
+  print(Data_rows,op)
   if createdjson("AnalyzedORFS\\matchs.json")==2 and createdjson("AnalyzedORFS\\exported_json_data.xlsx")!=1:
     with open('AnalyzedORFS\\matchs.json','r') as json_file:
       d = j.load(json_file)
@@ -201,6 +202,39 @@ From the ORFS in out.csv, will be selected the ones that fulfill the next condit
   1. Is nested or is 'Nested' is greater than 0
   2. Direction is right to left
 """
+def delimit2(ORF_ROWS):
+  available =  ORF_ROWS[((ORF_ROWS['Reading Direction'] == 'left to right') & (ORF_ROWS['Nesting Level'] == '0'))]
+  Data = ORF_ROWS[((ORF_ROWS['Reading Direction'] == 'left to right') & (ORF_ROWS['Nesting Level'] == '0')) | ((ORF_ROWS['Nesting Level'] != '0') & (ORF_ROWS['Reading Direction'] == 'right to left'))]
+  print("These are the ORFS you can analyse, select one to choose his nested ORF to analyse:")
+  
+  index=0
+  ava=Data.copy()
+  for j in list(available['ORF']):
+    
+    Data=ava.copy()
+    print(str(index+1) + ". " + "Organism Definition: "+ list(available["Definition"])[0] + " , ORF:"+ j)
+    index+=1 
+    op=index
+    print(list(available['ORF']), op-1)
+    delete=list(available['ORF'])[op-1] 
+    kernel = Data['ORF'] == delete
+    df = Data.drop(Data[kernel].index)
+    kernel = []
+    for i in range(0,len(df)):
+      kernel.append(not Inrange(int((df.iloc[i])['End codon']),int((df.iloc[i])['Start codon']),int(list(available['End codon'])[op-1]),int(list(available['Start codon'])[op-1]))==1)
+    df1 = (df.drop(df[kernel].index))
+    for inde,row in df1.iterrows():
+      df1.at[inde,'Start codon'],df1.at[inde,'End codon']=updatepositions(int(list(available['End codon'])[op-1]),int(list(available['Start codon'])[op-1]),int(df1.at[inde,'End codon']),int(df1.at[inde,'Start codon']))
+    ind=1
+    h=0
+    cleanscreen()
+    for i in range(0,len(df1)):
+      print(str(ind) +". "+ str((df1.iloc[i])['Definition']) + " ; ORF sequence: " + str((df1.iloc[i])['ORF']) + " ; OrfLength nucleotides : "   + str((df1.iloc[i])['ORFLength']) + " ; Start Codon : " + str((df1.iloc[i])['Start codon']) + " ; End Codon : " +str((df1.iloc[i])['End codon']) )
+      ind+=1
+      print("choose one to gather data and analyze among other ORFS in genetic codes")
+      opp = i
+      createJSON(df1,opp)
+
 def delimit(ORF_ROWS):
   available =  ORF_ROWS[((ORF_ROWS['Reading Direction'] == 'left to right') & (ORF_ROWS['Nesting Level'] == '0'))]
   Data = ORF_ROWS[((ORF_ROWS['Reading Direction'] == 'left to right') & (ORF_ROWS['Nesting Level'] == '0')) | ((ORF_ROWS['Nesting Level'] != '0') & (ORF_ROWS['Reading Direction'] == 'right to left'))]
@@ -309,7 +343,50 @@ def reviewgeneticodes(path="DatabaseORFS\\out.csv"):
       break
     startquery+=OrfsList[i]    
   cleanscreen()
-  analyzeoption(row_list,startquery=startquery,endquery=endquery,columnnames=row_list[0])
+  analyze2(row_list,startquery=startquery,endquery=endquery,columnnames=row_list[0])
+
+def analyze2(rows,startquery,endquery,columnnames):
+  Data = pd.DataFrame(rows[startquery:endquery],columns=columnnames)
+  print("Advertisement: For the analysis of ORFS in this algorithm we will only include those that go in the direction of reading from left to right and the ORFS nested to this")
+  print(Data)
+  delimit2(Data)
+
+def thirdoption(path="DatabaseORFS\\out.csv"):
+  Organismslist = []
+  OrfsList = []
+  orfcount = 0
+  first =True
+  row_list = []
+  with open(path, "r") as entrada:
+    csv_reader = csv.reader(entrada, delimiter=',')
+    for fila in csv_reader:
+      orfcount+=1
+      row_list.append(fila)
+      if fila[0] not in Organismslist and first==False:
+        Organismslist.append(fila[0])
+        if len(Organismslist)==1:
+          orfcount=1
+        else:
+          OrfsList.append(orfcount-1)
+          orfcount=1
+      else:
+        first=False
+        
+    OrfsList.append(orfcount)
+  index=1
+  print("Organisms to analyze their ORF:")
+  for Organism in Organismslist:
+    print(str(index)+ ". " + Organism + " ; ORFS: ",str(OrfsList[index-1]))
+    index+=1
+  startquery=1
+  endquery=0
+  print(row_list)
+  
+  for i in range(0,len(Organismslist)):  
+    endquery=startquery+OrfsList[i]
+    cleanscreen()
+    analyze2(row_list,startquery=startquery,endquery=endquery,columnnames=row_list[0])
+    startquery+=OrfsList[i]
 
 def analyzeORF():
   print("Choose an option:")
@@ -317,4 +394,5 @@ def analyzeORF():
   print("2. Review Genetic Codes and analyze a specific ORF")
   print("3. Analyze all in the Database")
   cleanscreen()
-  reviewgeneticodes()
+  thirdoption()
+  #reviewgeneticodes()

@@ -1,3 +1,5 @@
+import numpy as np 
+from collections import defaultdict
 from bs4 import BeautifulSoup
 import urllib.request
 import re
@@ -599,3 +601,35 @@ def get_nucleotidesequence_and_metadata_from_gbfile(filename):
     Data = getSequence(Data1)
 
     return Data,getOrganism(Data1),getDefinition(Data1)
+
+
+def returninsertion(organism1,organism2,startindex=3):
+    dictio = defaultdict(int)
+    res=""
+    for i in organism2:
+        dictio[i]+=1
+    stop = defaultdict(int)
+    for i in organism1[len(organism1)-4:-1]:
+        stop[i]+=1
+    for i in organism1:
+        n = ((dictio[i]-1)>=0)
+        if(n):
+            dictio[i]-=1
+            res+=i
+        else:
+            return False
+    val=[]
+    for v in dictio.keys():
+        val.append([v,dictio[v]])
+    print(val)
+    while val:
+        idx=np.random.randint(low=0,high=len(val))
+        if val[idx][1]>0:
+            res+=val[idx][0]
+            val[idx][1]-=1
+        else:
+            val[idx]=val[-1]
+            val.pop()
+        print(val)
+    return res
+print(returninsertion("atgacctga","atgacctga",0))
