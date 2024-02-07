@@ -609,7 +609,8 @@ def returninsertion(organism1,organism2,startindex=3):
     for i in organism2:
         dictio[i]+=1
     stop = defaultdict(int)
-    for i in organism1[len(organism1)-4:-1]:
+    for i in organism2[len(organism2)-3:len(organism2)]:
+        dictio[i]-=1
         stop[i]+=1
     for i in organism1:
         n = ((dictio[i]-1)>=0)
@@ -617,11 +618,13 @@ def returninsertion(organism1,organism2,startindex=3):
             dictio[i]-=1
             res+=i
         else:
-            return False
+            if((dictio[i]-1)<0):
+                return False
     val=[]
     for v in dictio.keys():
         val.append([v,dictio[v]])
     print(val)
+    print(res)
     while val:
         idx=np.random.randint(low=0,high=len(val))
         if val[idx][1]>0:
@@ -630,6 +633,9 @@ def returninsertion(organism1,organism2,startindex=3):
         else:
             val[idx]=val[-1]
             val.pop()
-        print(val)
+    val=[]
+    print(stop)
+    for v in stop.keys():
+        res+=v*stop[v]
     return res
-print(returninsertion("atgacctga","atgacctga",0))
+print(returninsertion("atgcfatgatga","atgtgacfatgatga",0))
